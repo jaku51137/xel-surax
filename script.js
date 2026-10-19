@@ -591,19 +591,32 @@ function previousWord() {
   renderWord();
 }
 
-function speakWord() {
-  if (!("speechSynthesis" in window)) {
-    alert("Бұл браузерде дыбыстау мүмкіндігі жоқ.");
+
+function speakMongolian(text) {
+  if (!("speechSynthesis" in window) ||
+      typeof SpeechSynthesisUtterance === "undefined") {
+    alert("Дуугаар унших боломжгүй байна. Chrome браузераар нээгээд үзээрэй.");
     return;
   }
 
-  const utterance = new SpeechSynthesisUtterance(words[currentWord].mn);
-  utterance.lang = "mn-MN";
-  utterance.rate = 0.8;
+  const synthesis = window.speechSynthesis;
+  const utterance = new SpeechSynthesisUtterance(text);
 
-  window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(utterance);
+  utterance.lang = "mn-MN";
+  utterance.rate = 0.85;
+  utterance.volume = 1;
+
+  synthesis.cancel();
+
+  setTimeout(() => {
+    synthesis.speak(utterance);
+  }, 100);
 }
+
+function speakWord() {
+  speakMongolian(words[currentWord].mn);
+}
+
 
 // 10. БЕТ ЖҮКТЕЛГЕНДЕ
 document.addEventListener("DOMContentLoaded", () => {
