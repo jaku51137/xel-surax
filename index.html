@@ -1,0 +1,419 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Xel surax — қазақтарға моңғол тілін үйренуге арналған тегін және ақылы сабақтар платформасы.">
+  <title>Xel surax | Моңғол тілін үйрен</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+<!-- Оқушы профилі -->
+<section id="profile" class="page" hidden>
+  <div class="profile-container">
+    <h2>👤 Менің профилім</h2>
+    <p>Өз атыңды енгізіп, оқу жетістіктеріңді бақыла.</p>
+
+    <form id="profile-form">
+      <label for="student-name">Оқушының аты</label>
+      <input
+        id="student-name"
+        type="text"
+        placeholder="Мысалы: Жәрдембек"
+        maxlength="40"
+        required
+      />
+
+      <button type="submit">💾 Профильді сақтау</button>
+    </form>
+
+    <div id="profile-info" hidden>
+      <h3 id="profile-greeting"></h3>
+      <p id="profile-lessons"></p>
+      <p id="profile-average"></p>
+      <button type="button" onclick="editProfile()">
+        ✏️ Атымды өзгерту
+      </button>
+    </div>
+
+    <button type="button" onclick="showPage('home')">
+      🏠 Басты бет
+    </button>
+  </div>
+  
+<div class="payment-notice">
+  <span class="payment-notice-icon">ⓘ</span>
+  <div>
+    <strong>Төлем туралы ескерту</strong>
+    <p>
+      Ақылы сабақтар әзірге демо ретінде көрсетілген.
+      Нақты төлем жүйесі қосылмаған.
+    </p>
+  </div>
+</div>
+
+</section>
+
+
+  <header class="header">
+    <a href="#" class="logo" onclick="showPage('home'); return false;">
+      <span class="logo-icon">X</span> Xel surax
+    </a>
+    
+     
+    <nav class="nav">
+      
+    <button onclick="showPage('home')">
+        🏠 Басты бет
+    </button>
+
+    <button onclick="showPage('lessons')">
+        📚 Сабақтар
+    </button>
+    <button onclick="showPage('home')">
+        🏠 Тест
+    <button onclick="showPage('results')">
+        📊 Менің нәтижелерім
+</button>
+    </nav>
+
+    <button class="header-btn" onclick="showPage('lessons')">
+      Оқуды бастау →
+    </button>
+  </header>
+
+  <main>
+    <!-- БАСТЫ БЕТ -->
+    <section id="home" class="page active">
+      <div class="hero">
+        <div class="hero-content">
+          <span class="eyebrow">🇰🇿 Қазақша үйрен • 🇲🇳 Моңғолша сөйле</span>
+          <h1>Моңғол тілін<br>үйрену енді <span>оңай!</span></h1>
+          <p>
+            Әліпбиден бастап еркін сөйлесуге дейін.
+            Өзіңе ыңғайлы уақытта, өз қарқыныңмен үйрен.
+          </p>
+          <div class="hero-actions">
+            <button class="primary-btn" onclick="showPage('lessons')">
+              Тегін баста →
+            </button>
+            <button class="secondary-btn" onclick="showPage('dictionary')">
+              Сөздікті ашу
+            </button>
+            <button onclick="showPage('profile'); renderProfile();">
+                👤 Менің профилім
+            </button>
+          </div>
+          <div class="hero-stats">
+            <div><strong>8</strong><span>оқу деңгейі</span></div>
+            <div><strong>24/7</strong><span>оқу мүмкіндігі</span></div>
+            <div><strong>0₮</strong><span>бастау бағасы</span></div>
+          </div>
+          
+         <div class="dashboard">
+            <h2>📈 Менің жетістіктерім</h2>
+            <div id="dashboard-stats" class="stats-grid"></div>
+            </div>
+
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-emoji">📚</div>
+          <span class="mini-label">Бүгінгі сөз</span>
+          <h2>Сайн байна уу?</h2>
+          <p>Сәлеметсіз бе?</p>
+          <div class="word-divider"></div>
+          <span class="success-text">✓ Алғашқы қадамыңды жаса!</span>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">ӨЗ ДЕҢГЕЙІҢДІ ТАҢДА</span>
+          <h2>Оқу жолыңды баста</h2>
+        </div>
+        <button class="text-btn" onclick="showPage('lessons')">
+          Барлық сабақ →
+        </button>
+      </div>
+
+      <div class="level-grid">
+        <article class="level-card">
+          <span class="level-icon purple">🔤</span>
+          <span class="level-number">01-ДЕҢГЕЙ</span>
+          <h3>Нөлден бастау</h3>
+          <p>Әліпби, дыбыстар және алғашқы сөздер.</p>
+          <button class="card-link" onclick="showPage('lessons')">
+            Үйрену →
+          </button>
+        </article>
+
+        <article class="level-card">
+          <span class="level-icon green">💬</span>
+          <span class="level-number">02-ДЕҢГЕЙ</span>
+          <h3>Күнделікті сөйлесу</h3>
+          <p>Сәлемдесу, танысу және қарапайым диалогтар.</p>
+          <button class="card-link" onclick="showPage('lessons')">
+            Үйрену →
+          </button>
+        </article>
+            <input
+                id="word-search"
+                type="text"
+                placeholder="Моңғолша немесе қазақша сөз іздеу..."
+                oninput="searchWords()"
+            />
+
+  <div id="word-search-results"></div>
+</div>
+
+            </button>
+          </div>
+          <div class="hero-stats">
+            <div><strong>8</strong><span>оқу деңгейі</span></div>
+            <div><strong>24/7</strong><span>оқу мүмкіндігі</span></div>
+            <div><strong>0₮</strong><span>бастау бағасы</span></div>
+          </div>
+          
+         <div class="dashboard">
+            <h2>📈 Менің жетістіктерім</h2>
+            <div id="dashboard-stats" class="stats-grid"></div>
+            </div>
+
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-emoji">📚</div>
+          <span class="mini-label">Бүгінгі сөз</span>
+          <h2>Сайн байна уу?</h2>
+          <p>Сәлеметсіз бе?</p>
+          <div class="word-divider"></div>
+          <span class="success-text">✓ Алғашқы қадамыңды жаса!</span>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">ӨЗ ДЕҢГЕЙІҢДІ ТАҢДА</span>
+          <h2>Оқу жолыңды баста</h2>
+        </div>
+        <button class="text-btn" onclick="showPage('lessons')">
+          Барлық сабақ →
+        </button>
+      </div>
+
+      <div class="level-grid">
+        <article class="level-card">
+          <span class="level-icon purple">🔤</span>
+          <span class="level-number">01-ДЕҢГЕЙ</span>
+          <h3>Нөлден бастау</h3>
+          <p>Әліпби, дыбыстар және алғашқы сөздер.</p>
+          <button class="card-link" onclick="showPage('lessons')">
+            Үйрену →
+          </button>
+        </article>
+
+        <article class="level-card">
+          <span class="level-icon green">💬</span>
+          <span class="level-number">02-ДЕҢГЕЙ</span>
+          <h3>Күнделікті сөйлесу</h3>
+          <p>Сәлемдесу, танысу және қарапайым диалогтар.</p>
+          <button class="card-link" onclick="showPage('lessons')">
+            Үйрену →
+          </button>
+        </article>
+
+        <article class="level-card">
+          <span class="level-icon orange">🚀</span>
+          <span class="level-number">03-ДЕҢГЕЙ</span>
+          <h3>Еркін сөйлеуге қадам</h3>
+          <p>Грамматика, мәтін және өмірлік жағдайлар.</p>
+          <button class="card-link" onclick="showPage('lessons')">
+            Үйрену →
+          </button>
+        </article>
+      </div>
+
+      <div class="promo">
+        <div>
+          <span class="eyebrow">КҮН САЙЫН 15 МИНУТ</span>
+          <h2>Бүгін бір сөз, ертең бір сөйлем!</h2>
+          <p>Кішкентай қадамдар үлкен нәтижеге жеткізеді.</p>
+        </div>
+        <button class="primary-btn" onclick="showPage('quiz')">
+          Тест тапсыру →
+        </button>
+      </div>
+    </section>
+
+    <!-- САБАҚТАР -->
+    <section id="lessons" class="page">
+      <div class="page-heading">
+        <span class="eyebrow">ОҚУ БӨЛІМІ</span>
+        <h1>Сабақтар</h1>
+        <p>Өз деңгейіңді таңда да, сабақты баста.</p>
+      </div>
+
+      <div class="filter-row">
+        <button class="filter-btn active" data-filter="all">Барлығы</button>
+        <button class="filter-btn" data-filter="free">Тегін</button>
+        <button class="filter-btn" data-filter="paid">Ақылы</button>
+      </div>
+
+      <div id="lesson-grid" class="lesson-grid"></div>
+      <p class="note">
+        Ескерту: ақылы сабақтар әзірге демо ретінде көрсетілген.
+        Нақты төлем жүйесі қосылмаған.
+      </p>
+      
+<!-- Моңғолша–қазақша сөздік -->
+<div class="dictionary-section">
+  <span class="section-label">СӨЗДІК</span>
+  <h2>📚 Моңғолша–қазақша сөздік</h2>
+  <p>Күн сайын жаңа сөз үйрен!</p>
+
+  <input
+    id="word-search"
+    type="text"
+    placeholder="Моңғолша немесе қазақша сөз ізде..."
+    oninput="searchWords()"
+  />
+
+  <div class="dictionary-categories">
+    <button type="button" onclick="filterWords('all')">Барлығы</button>
+    <button type="button" onclick="filterWords('greeting')">Сәлемдесу</button>
+    <button type="button" onclick="filterWords('family')">Отбасы</button>
+    <button type="button" onclick="filterWords('numbers')">Сандар</button>
+    <button type="button" onclick="filterWords('food')">Тағам</button>
+  </div>
+
+  <div id="word-search-results" class="dictionary-grid"></div>
+</div>
+
+      
+    </section>
+
+    <!-- СӨЗДІК -->
+    <section id="dictionary" class="page">
+      <div class="page-heading">
+        <span class="eyebrow">ЖАҢА СӨЗДЕР</span>
+        <h1>Моңғолша сөздік</h1>
+        <p>Сөзді көр, аудармасын аш және дауыстап қайтала.</p>
+      </div>
+
+      <div class="dictionary-box">
+        <span id="word-count" class="mini-label">1 / 10 сөз</span>
+        <div class="big-word" id="mongolian-word">Сайн байна уу?</div>
+        <div class="translation" id="kazakh-word">Аударманы көрсету үшін бас</div>
+        <div class="word-actions">
+          <button class="secondary-btn" onclick="previousWord()">← Артқа</button>
+          <button class="primary-btn" onclick="toggleTranslation()">Аудармасы</button>
+          <button class="secondary-btn" onclick="speakWord()">🔊 Тыңдау</button>
+          <button class="secondary-btn" onclick="nextWord()">Келесі →</button>
+        </div>
+      </div>
+      <p class="note">
+        Дыбыстау браузердің қолжетімді дауыстарына байланысты.
+        Қазақша жуық айтылым нақты моңғол дыбысталуын толық алмастырмайды.
+      </p>
+    </section>
+
+    <!-- ТЕСТ -->
+    <section id="quiz" class="page">
+      <div class="page-heading">
+        <span class="eyebrow">БІЛІМІҢДІ ТЕКСЕР</span>
+        <h1>Моңғол тілі тесті</h1>
+        <p>Сұрақтарға жауап беріп, өз ұпайыңды біл.</p>
+      </div>
+
+      <div class="quiz-box">
+        <div class="quiz-top">
+          <span id="question-number">1 / 5 сұрақ</span>
+          <span id="score-label">Ұпай: 0</span>
+        </div>
+        <div class="progress-track">
+          <div id="quiz-progress" class="progress-fill"></div>
+        </div>
+        <h2 id="question-text">«Сайн байна уу?» нені білдіреді?</h2>
+        <div id="answer-options" class="answer-options"></div>
+        <p id="quiz-feedback" aria-live="polite"></p>
+        <button id="next-question" class="primary-btn" disabled>
+          Келесі сұрақ →
+        </button>
+        <div id="quiz-result" hidden></div>
+        <button id="restart-quiz" class="secondary-btn" hidden>
+          Қайта тапсыру ↻
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a href="#" class="logo" onclick="showPage('home'); return false;">
+      <span class="logo-icon">X</span> Xel surax
+    </a>
+    <p>Тілді үйрен. Мүмкіндігіңді кеңейт.</p>
+    <p>© 2026 Xel surax • Оқу жобасының алғашқы нұсқасы</p>
+  </footer>
+
+<!-- ТОЛЫҚ САБАҚ АШЫЛАТЫН БӨЛІМ -->
+<section id="lesson-view" class="page">
+  <button class="secondary-btn" onclick="showPage('lessons')">
+    ← Сабақтарға қайту
+  </button>
+
+  <div class="lesson-detail">
+    <h2 id="lesson-title"></h2>
+<p id="lesson-intro"></p>
+<div id="lesson-vocabulary"></div>
+<p id="lesson-example"></p>
+    <span id="detail-level" class="eyebrow">1-ДЕҢГЕЙ</span>
+    <h1 id="detail-title">Сабақ атауы</h1>
+    <p id="detail-description"></p>
+
+    <div class="progress-track">
+      <div id="lesson-progress" class="progress-fill"></div>
+    </div>
+
+    <div id="lesson-content" class="lesson-content"></div>
+
+    <div class="exercise-box">
+      <span class="eyebrow">ӨЗІҢДІ ТЕКСЕР</span>
+      <h2 id="exercise-question">Сұрақ</h2>
+      <div id="exercise-options" class="answer-options"></div>
+      <p id="exercise-feedback" aria-live="polite"></p>
+      <button id="exercise-next" class="primary-btn" disabled>
+        Келесі тапсырма →
+      </button>
+        <p id="exercise-progress"></p>
+        <p id="lesson-result"></p>
+    </div>
+
+    <div class="lesson-navigation">
+      <button class="secondary-btn" onclick="showPage('lessons')">
+        Сабақтар тізімі
+      </button>
+      <button id="complete-lesson" class="primary-btn">
+        Сабақты аяқтау ✓
+      </button>
+    </div>
+  </div>
+</section>
+    <script src="script.js"></script>
+    <section id="results" class="page" hidden>
+  <h2>📊 Менің нәтижелерім</h2>
+
+  <div id="results-list"></div>
+
+  <button onclick="showPage('lessons')">
+    📚 Сабақтарға қайту
+  </button>
+
+  <button onclick="showPage('home')">
+    🏠 Басты бет
+  </button>
+</section>
+</body>
+</html>
